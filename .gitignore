@@ -1,0 +1,12 @@
+/AccountOwnerServer/obj
+/AccountOwnerServer/bin
+/Contracts/obj
+/Contracts/bin
+/Entities/obj
+/Entities/bin
+/LoggerService/obj
+/LoggerService/bin
+/Repository/obj
+/Repository/bin
+/.vs
+/AccountOwnerServer/*.user
