@@ -35,7 +35,7 @@ namespace Entities.Helpers
 
 				var sortingOrder = param.EndsWith(" desc") ? "descending" : "ascending";
 
-				orderQueryBuilder.Append($"{objectProperty.Name.ToString()} {sortingOrder}, ");
+				orderQueryBuilder.Append($"{objectProperty.Name} {sortingOrder}, ");
 			}
 
 			var orderQuery = orderQueryBuilder.ToString().TrimEnd(',', ' ');
