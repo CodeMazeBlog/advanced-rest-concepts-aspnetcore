@@ -22,9 +22,9 @@ namespace Repository
 		{
 			var accounts = FindByCondition(a => a.OwnerId.Equals(ownerId));
 
-			_sortHelper.ApplySort(accounts, parameters.OrderBy);
+			var sortedAccounts = _sortHelper.ApplySort(accounts, parameters.OrderBy);
 
-			return PagedList<Account>.ToPagedList(accounts,
+			return PagedList<Account>.ToPagedList(sortedAccounts,
 				parameters.PageNumber,
 				parameters.PageSize);
 		}
