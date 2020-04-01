@@ -26,9 +26,9 @@ namespace Repository
 
 			SearchByName(ref owners, ownerParameters.Name);
 
-			_sortHelper.ApplySort(owners, ownerParameters.OrderBy);
+			var sortedOwners = _sortHelper.ApplySort(owners, ownerParameters.OrderBy);
 
-			return PagedList<Owner>.ToPagedList(owners,
+			return PagedList<Owner>.ToPagedList(sortedOwners,
 				ownerParameters.PageNumber,
 				ownerParameters.PageSize);
 		}
