@@ -23,9 +23,9 @@ namespace Repository
 		{
 			var accounts = FindByCondition(a => a.OwnerId.Equals(ownerId));
 
-			_sortHelper.ApplySort(accounts, parameters.OrderBy);
+			var sortedAccounts = _sortHelper.ApplySort(accounts, parameters.OrderBy);
 
-			var shapedAccounts = _dataShaper.ShapeData(accounts, parameters.Fields);
+			var shapedAccounts = _dataShaper.ShapeData(sortedAccounts, parameters.Fields);
 
 			return PagedList<ShapedEntity>.ToPagedList(shapedAccounts,
 				parameters.PageNumber,
