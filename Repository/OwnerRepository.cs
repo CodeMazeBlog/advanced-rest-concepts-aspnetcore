@@ -22,7 +22,7 @@ namespace Repository
 
 			SearchByName(ref owners, ownerParameters.Name);
 
-			return PagedList<Owner>.ToPagedList(owners.ToList().OrderBy(on => on.Name),
+			return PagedList<Owner>.ToPagedList(owners.OrderBy(on => on.Name),
 				ownerParameters.PageNumber,
 				ownerParameters.PageSize);
 		}

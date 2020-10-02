@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace AccountOwnerServer.Controllers
 {
-	[Route("api/owner")]
+	[Route("api/owners")]
 	[ApiController]
 	public class OwnerController : ControllerBase
 	{
