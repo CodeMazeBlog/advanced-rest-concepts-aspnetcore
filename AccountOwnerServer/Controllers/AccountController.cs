@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace AccountOwnerServer.Controllers
 {
-	[Route("api/owner/{ownerId}/account")]
+	[Route("api/owners/{ownerId}/accounts")]
 	[ApiController]
 	public class AccountController : ControllerBase
 	{
