@@ -1,12 +1,9 @@
 ﻿using Entities.Models;
-using System;
-using System.Collections.Generic;
 
 namespace Contracts
 {
-    public interface IAccountRepository:IRepositoryBase<Account>
+    public interface IAccountRepository
     {
-		IEnumerable<Account> GetAccountsByOwner(Guid ownerId);
-		Account GetAccountByOwner(Guid ownerId, Guid id);
-	}
+        IEnumerable<Account> AccountsByOwner(Guid ownerId);
+    }
 }
