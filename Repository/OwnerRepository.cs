@@ -1,41 +1,47 @@
 ﻿using Contracts;
 using Entities;
+using Entities.Extensions;
 using Entities.Models;
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Repository
 {
-    public class OwnerRepository : RepositoryBase<Owner>, IOwnerRepository 
-    { 
-        public OwnerRepository(RepositoryContext repositoryContext) 
-            : base(repositoryContext) 
-        { 
-        }
+	public class OwnerRepository : RepositoryBase<Owner>, IOwnerRepository
+	{
+		public OwnerRepository(RepositoryContext repositoryContext)
+			: base(repositoryContext)
+		{
+		}
 
-        public IEnumerable<Owner> GetAllOwners()
-        {
-            return FindAll()
-                .OrderBy(ow => ow.Name)
-                .ToList();
-        }
+		public IEnumerable<Owner> GetOwners()
+		{
+			return FindAll()
+				.OrderBy(ow => ow.Name);
+		}
 
-        public Owner GetOwnerById(Guid ownerId)
-        {
-            return FindByCondition(owner => owner.Id.Equals(ownerId))
-                .FirstOrDefault();
-        }
+		public Owner GetOwnerById(Guid ownerId)
+		{
+			return FindByCondition(owner => owner.Id.Equals(ownerId))
+				.DefaultIfEmpty(new Owner())
+				.FirstOrDefault();
+		}
 
-        public Owner GetOwnerWithDetails(Guid ownerId)
-        {
-            return FindByCondition(owner => owner.Id.Equals(ownerId))
-                .Include(ac => ac.Accounts)
-                .FirstOrDefault();
-        }
+		public void CreateOwner(Owner owner)
+		{
+			Create(owner);
+		}
 
-        public void CreateOwner(Owner owner) => Create(owner);
+		public void UpdateOwner(Owner dbOwner, Owner owner)
+		{
+			dbOwner.Map(owner);
+			Update(dbOwner);
+		}
 
-        public void UpdateOwner(Owner owner) => Update(owner);
-
-        public void DeleteOwner(Owner owner) => Delete(owner);
-    }
+		public void DeleteOwner(Owner owner)
+		{
+			Delete(owner);
+		}
+	}
 }
